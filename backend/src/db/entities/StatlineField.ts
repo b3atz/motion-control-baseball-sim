@@ -1,5 +1,6 @@
 import {Entity, PrimaryKey, Property, ManyToOne} from '@mikro-orm/core'
-import { Player } from './player';
+import { Player } from './Player';
+import { Game } from './Game';
 
 @Entity()
 export class StatlineField{
@@ -8,6 +9,9 @@ export class StatlineField{
 
     @ManyToOne(() => Player)
     player!: Player;
+    
+    @ManyToOne(() => Game)
+    game!: Game;
     
     @Property()
     E: number = 0;

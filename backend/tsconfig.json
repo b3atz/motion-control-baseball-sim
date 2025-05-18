@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "./dist",
+    "target": "ES2021",
+    "module": "CommonJS",
     "rootDir": "./",
+    "outDir": "./dist",
     "strict": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "emitDecoratorMetadata": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "useDefineForClassFields": true
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "@entities/*": ["db/entities/*"],
+      "@routes/*": ["routes/*"]
+    }
   },
-  "include": ["./"]
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

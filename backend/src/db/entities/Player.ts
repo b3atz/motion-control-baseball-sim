@@ -1,7 +1,8 @@
 import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection } from '@mikro-orm/core';
-import { StatlineBat } from './statlineBat';
-import { StatlinePitch } from './statlinePitch';
-import { StatlineField } from './statlineField';
+import { StatlineBat } from './StatlineBat';
+import { StatlinePitch } from './StatlinePitch';
+import { StatlineField } from './StatlineField';
+import { PlayerTeam } from './PlayerTeam';
 
 
 @Entity()
@@ -20,4 +21,7 @@ export class Player {
 
   @OneToMany(() => StatlineField, statline => statline.player)
   statlinesField = new Collection<StatlineField>(this);
+
+  @OneToMany(() => PlayerTeam, pt => pt.player)
+  teamHistory = new Collection<PlayerTeam>(this);
 }
