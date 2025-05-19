@@ -8,13 +8,13 @@ export class PlayerTeam {
   id!: number;
 
   @ManyToOne(() => Player)
-  player!: Player;
+  player!: Player
 
   @ManyToOne(() => Team)
   team!: Team;
 
   @Property()
-  season!: string; // e.g. "2025"
+  season!: string; 
 
   @Property({ nullable: true })
   startDate?: Date;

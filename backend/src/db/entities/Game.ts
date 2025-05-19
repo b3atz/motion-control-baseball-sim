@@ -3,6 +3,7 @@ import { StatlineBat } from './StatlineBat';
 import { StatlinePitch } from './StatlinePitch';
 import { StatlineField } from './StatlineField';
 import { Team } from './Team';
+import { Score } from './Score';
 
 
 @Entity()
@@ -13,11 +14,8 @@ export class Game {
   @Property()
   innings!: number;
 
-    @OneToMany(() => StatlineBat, statline => statline.game)
-  homeScore = new Collection<StatlineBat>(this);
-
-  @OneToMany(() => StatlinePitch, statline => statline.game)
-  awayScore = new Collection<StatlinePitch>(this);
+  @OneToMany(() => Score, score => score.game)
+  scores = new Collection<Score>(this);
 
   @ManyToOne()
   home!: Team;
@@ -33,4 +31,16 @@ export class Game {
 
   @OneToMany(() => StatlineField, statline => statline.game)
   statlinesField = new Collection<StatlineField>(this);
+
+  get homeTotal(): number {
+  return this.scores
+    .filter(score => score.team.id === this.home.id)
+    .reduce((sum, score) => sum + score.score, 0);
+}
+
+get awayTotal(): number {
+  return this.scores
+    .filter(score => score.team.id === this.away.id)
+    .reduce((sum, score) => sum + score.score, 0);
+}
 }
