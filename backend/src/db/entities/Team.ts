@@ -1,5 +1,5 @@
 import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection, ManyToOne } from '@mikro-orm/core';
-import { PlayerTeam } from './PlayerTeam';
+import { PlayerTeam } from './PlayerTeam.js';
 
 
 @Entity()

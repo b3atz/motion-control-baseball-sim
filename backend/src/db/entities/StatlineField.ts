@@ -1,6 +1,6 @@
-import {Entity, PrimaryKey, Property, ManyToOne} from '@mikro-orm/core'
-import { Player } from './Player';
-import { Game } from './Game';
+import {Entity, PrimaryKey, Property, ManyToOne, Rel} from '@mikro-orm/core'
+import { Player } from './Player.js';
+import { Game } from './Game.js';
 
 @Entity()
 export class StatlineField{
@@ -8,10 +8,10 @@ export class StatlineField{
     id!: number;
 
     @ManyToOne(() => Player)
-    player!: Player;
+    player!: Rel<Player>;
     
     @ManyToOne(() => Game)
-    game!: Game;
+    game!: Rel<Game>;
     
     @Property()
     E: number = 0;

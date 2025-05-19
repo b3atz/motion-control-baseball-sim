@@ -1,14 +1,17 @@
-import { Entity, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
-import { Game } from "./Game";
-import { Team } from "./Team";
+import { Entity, ManyToOne, PrimaryKey, Property, Rel } from "@mikro-orm/core";
+import { Game } from "./Game.js";
+import { Team } from "./Team.js";
 
 @Entity()
 export class Score {
+  @PrimaryKey()
+  id!: number;
+  
   @ManyToOne(() => Game)
-  game!: Game;
+  game!: Rel<Game>;
 
   @ManyToOne(() => Team)
-  team!: Team;
+  team!: Rel<Team>;
 
   @Property()
   inning!: number;

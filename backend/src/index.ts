@@ -1,19 +1,15 @@
-import { MikroORM } from '@mikro-orm/core';
-import mikroConfig from './mikro-orm.config';
+import dotenv from "dotenv";
+import app from "./app.js";
+dotenv.config();
 
-async function main() {
-  const orm = await MikroORM.init(mikroConfig);
-  const generator = orm.getSchemaGenerator();
-
-  console.log('Connected to DB');
-  // Uncomment to create schema from scratch
-  // await generator.dropSchema();
-  // await generator.createSchema();
-  // await generator.refreshDatabase();
-
-  await orm.close();
-}
-
-main().catch((err) => {
-  console.error(err);
-});
+app.listen({ port: Number(process.env.PORT), host: process.env.HOST},
+	(err, address) => {
+		if (err) {
+			app.log.error(err);
+			process.exit(1);
+		}
+		app.log.info(`Started server at ${address}`);
+		app.log.debug("Debug level");
+		app.log.trace("Trace level");
+	}
+);;

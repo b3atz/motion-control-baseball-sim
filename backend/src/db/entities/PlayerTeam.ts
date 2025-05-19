@@ -1,6 +1,6 @@
-import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection, ManyToOne } from '@mikro-orm/core';
-import { Player } from './Player';
-import { Team } from './Team';
+import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection, ManyToOne, Rel } from '@mikro-orm/core';
+import { Player } from './Player.js';
+import { Team } from './Team.js';
 
 @Entity()
 export class PlayerTeam {
@@ -8,10 +8,10 @@ export class PlayerTeam {
   id!: number;
 
   @ManyToOne(() => Player)
-  player!: Player
+  player!: Rel<Player>;
 
   @ManyToOne(() => Team)
-  team!: Team;
+  team!: Rel<Team>;
 
   @Property()
   season!: string; 
