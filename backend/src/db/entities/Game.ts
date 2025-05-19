@@ -10,6 +10,15 @@ export class Game {
   @PrimaryKey()
   id!: number;
 
+  @Property()
+  innings!: number;
+
+    @OneToMany(() => StatlineBat, statline => statline.game)
+  homeScore = new Collection<StatlineBat>(this);
+
+  @OneToMany(() => StatlinePitch, statline => statline.game)
+  awayScore = new Collection<StatlinePitch>(this);
+
   @ManyToOne()
   home!: Team;
 
