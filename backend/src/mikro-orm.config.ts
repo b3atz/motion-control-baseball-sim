@@ -1,41 +1,36 @@
-import { Migrator } from '@mikro-orm/migrations'
-import dotenv from 'dotenv';
-dotenv.config();;
+import { SqliteDriver } from '@mikro-orm/sqlite';
+import { Migrator } from '@mikro-orm/migrations';
 import { SeedManager } from '@mikro-orm/seeder';
-import cors from '@fastify/cors';
-import plugin from 'fastify-plugin';
-
-
-
+import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from "url";
+
+dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-import { PostgreSqlDriver } from '@mikro-orm/postgresql';
+
 const entitiesTSPath = path.join(__dirname,"db" ,"entities");
 const entitiesJSPath = path.join(__dirname, "..", "dist", "db", "entities");
 const migrationsJSPath = path.join(__dirname,  "..", "dist", "db", "migrations");
 const migrationsTSPath = path.join(__dirname, "db", "migrations");
 
 export default {
-  driver: PostgreSqlDriver, // or 'postgresql', etc
-  dbName: process.env.DB_NAME,
-	port: Number(process.env.DB_PORT),
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-  entities: [entitiesJSPath],     // for production build
-  entitiesTs: [entitiesTSPath],         // for dev with TS
+  driver: SqliteDriver,
+  dbName: path.join(__dirname, '..', 'data', 'db.sqlite'), // SQLite file path
+  entities: [entitiesJSPath],
+  entitiesTs: [entitiesTSPath],
   allowGlobalContext: true,
   migrations: {
     path: migrationsJSPath,
-    pathTs: migrationsTSPath, 
-    glob: '!(*.d).{js,ts}', 
+    pathTs: migrationsTSPath,
+    glob: '!(*.d).{js,ts}',
   },
   seeder: {
-    path: './db/seeder', // your seeder directory
+    path: './db/seeder',
     defaultSeeder: 'PlayerSeeder',
   },
   debug: true,
-  extensions: [SeedManager,Migrator]
+  extensions: [SeedManager, Migrator],
 };
+

@@ -10,10 +10,10 @@ async function bootstrap() {
   try {
     const orm = await MikroORM.init(config);
 
-    // ✅ Apply pending migrations
+    
     await orm.getMigrator().up();
 
-    // ✅ Seed only if player table is empty
+    
     const playerCount = await orm.em.count('Player');
     if (playerCount === 0) {
       const seeder = orm.getSeeder();
@@ -21,7 +21,7 @@ async function bootstrap() {
       console.log('Seeded initial player data');
     }
 
-    // ✅ Start the server
+    
     await app.listen({
       port: Number(process.env.PORT),
       host: process.env.HOST

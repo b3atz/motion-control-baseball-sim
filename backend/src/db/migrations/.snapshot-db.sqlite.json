@@ -1,46 +1,43 @@
 {
-  "namespaces": [
-    "public"
-  ],
-  "name": "public",
+  "namespaces": [],
   "tables": [
     {
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "name": {
           "name": "name",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 255,
-          "mappedType": "string"
+          "length": null,
+          "mappedType": "text"
         },
         "profile_picture_url": {
           "name": "profile_picture_url",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "length": 255,
-          "mappedType": "string"
+          "length": null,
+          "mappedType": "text"
         }
       },
       "name": "player",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "player_pkey",
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -58,29 +55,29 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "name": {
           "name": "name",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 255,
-          "mappedType": "string"
+          "length": null,
+          "mappedType": "text"
         }
       },
       "name": "team",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "team_pkey",
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -98,67 +95,89 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "player_id": {
           "name": "player_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "team_id": {
           "name": "team_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "season": {
           "name": "season",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 255,
-          "mappedType": "string"
+          "length": null,
+          "mappedType": "text"
         },
         "start_date": {
           "name": "start_date",
-          "type": "timestamptz",
+          "type": "datetime",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "length": 6,
+          "length": null,
           "mappedType": "datetime"
         },
         "end_date": {
           "name": "end_date",
-          "type": "timestamptz",
+          "type": "datetime",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "length": 6,
+          "length": null,
           "mappedType": "datetime"
         }
       },
       "name": "player_team",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "player_team_pkey",
+          "columnNames": [
+            "player_id"
+          ],
+          "composite": false,
+          "keyName": "player_team_player_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "team_id"
+          ],
+          "composite": false,
+          "keyName": "player_team_team_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -175,11 +194,11 @@
           "columnNames": [
             "player_id"
           ],
-          "localTableName": "public.player_team",
+          "localTableName": "player_team",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.player",
+          "referencedTableName": "player",
           "updateRule": "cascade"
         },
         "player_team_team_id_foreign": {
@@ -187,11 +206,11 @@
           "columnNames": [
             "team_id"
           ],
-          "localTableName": "public.player_team",
+          "localTableName": "player_team",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.team",
+          "referencedTableName": "team",
           "updateRule": "cascade"
         }
       },
@@ -201,46 +220,69 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "innings": {
           "name": "innings",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "home_id": {
           "name": "home_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "away_id": {
           "name": "away_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         }
       },
       "name": "game",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "game_pkey",
+          "columnNames": [
+            "home_id"
+          ],
+          "composite": false,
+          "keyName": "game_home_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "away_id"
+          ],
+          "composite": false,
+          "keyName": "game_away_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -257,11 +299,11 @@
           "columnNames": [
             "home_id"
           ],
-          "localTableName": "public.game",
+          "localTableName": "game",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.team",
+          "referencedTableName": "team",
           "updateRule": "cascade"
         },
         "game_away_id_foreign": {
@@ -269,11 +311,11 @@
           "columnNames": [
             "away_id"
           ],
-          "localTableName": "public.game",
+          "localTableName": "game",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.team",
+          "referencedTableName": "team",
           "updateRule": "cascade"
         }
       },
@@ -283,127 +325,158 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "player_id": {
           "name": "player_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "game_id": {
           "name": "game_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "ip": {
           "name": "ip",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "h": {
           "name": "h",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "bb": {
           "name": "bb",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "k": {
           "name": "k",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "hr": {
           "name": "hr",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "er": {
           "name": "er",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "bf": {
           "name": "bf",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "hb": {
           "name": "hb",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "gs": {
           "name": "gs",
-          "type": "boolean",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "false",
-          "mappedType": "boolean"
+          "mappedType": "integer"
         }
       },
       "name": "statline_pitch",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "statline_pitch_pkey",
+          "columnNames": [
+            "player_id"
+          ],
+          "composite": false,
+          "keyName": "statline_pitch_player_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "game_id"
+          ],
+          "composite": false,
+          "keyName": "statline_pitch_game_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -420,11 +493,11 @@
           "columnNames": [
             "player_id"
           ],
-          "localTableName": "public.statline_pitch",
+          "localTableName": "statline_pitch",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.player",
+          "referencedTableName": "player",
           "updateRule": "cascade"
         },
         "statline_pitch_game_id_foreign": {
@@ -432,11 +505,11 @@
           "columnNames": [
             "game_id"
           ],
-          "localTableName": "public.statline_pitch",
+          "localTableName": "statline_pitch",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.game",
+          "referencedTableName": "game",
           "updateRule": "cascade"
         }
       },
@@ -446,67 +519,92 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "player_id": {
           "name": "player_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "game_id": {
           "name": "game_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "e": {
           "name": "e",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "po": {
           "name": "po",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "a": {
           "name": "a",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         }
       },
       "name": "statline_field",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "statline_field_pkey",
+          "columnNames": [
+            "player_id"
+          ],
+          "composite": false,
+          "keyName": "statline_field_player_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "game_id"
+          ],
+          "composite": false,
+          "keyName": "statline_field_game_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -523,11 +621,11 @@
           "columnNames": [
             "player_id"
           ],
-          "localTableName": "public.statline_field",
+          "localTableName": "statline_field",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.player",
+          "referencedTableName": "player",
           "updateRule": "cascade"
         },
         "statline_field_game_id_foreign": {
@@ -535,11 +633,11 @@
           "columnNames": [
             "game_id"
           ],
-          "localTableName": "public.statline_field",
+          "localTableName": "statline_field",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.game",
+          "referencedTableName": "game",
           "updateRule": "cascade"
         }
       },
@@ -549,187 +647,224 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "player_id": {
           "name": "player_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "game_id": {
           "name": "game_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "b1": {
           "name": "b1",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "b2": {
           "name": "b2",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "b3": {
           "name": "b3",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "hr": {
           "name": "hr",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "bb": {
           "name": "bb",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "hbp": {
           "name": "hbp",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "k": {
           "name": "k",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "ab": {
           "name": "ab",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "pa": {
           "name": "pa",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "sb": {
           "name": "sb",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "cs": {
           "name": "cs",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "sf": {
           "name": "sf",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "r": {
           "name": "r",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "rbi": {
           "name": "rbi",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "0",
           "mappedType": "integer"
         },
         "gs": {
           "name": "gs",
-          "type": "boolean",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "default": "false",
-          "mappedType": "boolean"
+          "mappedType": "integer"
         }
       },
       "name": "statline_bat",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "statline_bat_pkey",
+          "columnNames": [
+            "player_id"
+          ],
+          "composite": false,
+          "keyName": "statline_bat_player_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "game_id"
+          ],
+          "composite": false,
+          "keyName": "statline_bat_game_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -746,11 +881,11 @@
           "columnNames": [
             "player_id"
           ],
-          "localTableName": "public.statline_bat",
+          "localTableName": "statline_bat",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.player",
+          "referencedTableName": "player",
           "updateRule": "cascade"
         },
         "statline_bat_game_id_foreign": {
@@ -758,11 +893,11 @@
           "columnNames": [
             "game_id"
           ],
-          "localTableName": "public.statline_bat",
+          "localTableName": "statline_bat",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.game",
+          "referencedTableName": "game",
           "updateRule": "cascade"
         }
       },
@@ -772,55 +907,79 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "game_id": {
           "name": "game_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "team_id": {
           "name": "team_id",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "inning": {
           "name": "inning",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         },
         "score": {
           "name": "score",
-          "type": "int",
+          "type": "integer",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
+          "length": null,
           "mappedType": "integer"
         }
       },
       "name": "score",
-      "schema": "public",
       "indexes": [
         {
-          "keyName": "score_pkey",
+          "columnNames": [
+            "game_id"
+          ],
+          "composite": false,
+          "keyName": "score_game_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "team_id"
+          ],
+          "composite": false,
+          "keyName": "score_team_id_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
           "columnNames": [
             "id"
           ],
@@ -837,11 +996,11 @@
           "columnNames": [
             "game_id"
           ],
-          "localTableName": "public.score",
+          "localTableName": "score",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.game",
+          "referencedTableName": "game",
           "updateRule": "cascade"
         },
         "score_team_id_foreign": {
@@ -849,11 +1008,11 @@
           "columnNames": [
             "team_id"
           ],
-          "localTableName": "public.score",
+          "localTableName": "score",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "public.team",
+          "referencedTableName": "team",
           "updateRule": "cascade"
         }
       },
