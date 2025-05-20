@@ -1,4 +1,4 @@
-import {Entity, PrimaryKey, Property, ManyToOne, Rel} from '@mikro-orm/core'
+import {Entity, PrimaryKey, Property, ManyToOne, type Rel} from '@mikro-orm/core'
 import { Player } from './Player.js';
 import { Game } from './Game.js';
 

@@ -19,5 +19,4 @@ RUN npm run build
 EXPOSE 8080
 
 # Start the app (adjust start script as needed)
-CMD ["npm", "run", "start"]
-
+CMD npm run start && npm run seed

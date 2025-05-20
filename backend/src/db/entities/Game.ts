@@ -1,4 +1,4 @@
-import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection, ManyToOne, Rel } from '@mikro-orm/core';
+import { Entity, PrimaryKey, Property, OneToMany, OneToOne, Collection, ManyToOne} from '@mikro-orm/core';
 import { StatlineBat } from './StatlineBat.js';
 import { StatlinePitch } from './StatlinePitch.js';
 import { StatlineField } from './StatlineField.js';
@@ -18,10 +18,10 @@ export class Game {
   scores = new Collection<Score>(this);
 
   @ManyToOne(() => Team)
-  home!: Rel<Team>;
+  home!: Team;
 
   @ManyToOne(() => Team)
-  away!: Rel<Team>;
+  away!: Team;
     
   @OneToMany(() => StatlineBat, statline => statline.game)
   statlinesBat = new Collection<StatlineBat>(this);

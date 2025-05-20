@@ -1,4 +1,3 @@
-import { Options } from '@mikro-orm/core';
 import { Migrator } from '@mikro-orm/migrations'
 import dotenv from 'dotenv';
 dotenv.config();;
@@ -18,7 +17,7 @@ const entitiesJSPath = path.join(__dirname, "..", "dist", "db", "entities");
 const migrationsJSPath = path.join(__dirname,  "..", "dist", "db", "migrations");
 const migrationsTSPath = path.join(__dirname, "db", "migrations");
 
-const config: Options = {
+export default {
   driver: PostgreSqlDriver, // or 'postgresql', etc
   dbName: process.env.DB_NAME,
 	port: Number(process.env.DB_PORT),
@@ -27,6 +26,7 @@ const config: Options = {
 	password: process.env.DB_PASS,
   entities: [entitiesJSPath],     // for production build
   entitiesTs: [entitiesTSPath],         // for dev with TS
+  allowGlobalContext: true,
   migrations: {
     path: migrationsJSPath,
     pathTs: migrationsTSPath, 
@@ -39,5 +39,3 @@ const config: Options = {
   debug: true,
   extensions: [SeedManager,Migrator]
 };
-
-export default config;
