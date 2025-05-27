@@ -527,6 +527,16 @@
           "length": null,
           "mappedType": "integer"
         },
+        "pos": {
+          "name": "pos",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
         "player_id": {
           "name": "player_id",
           "type": "integer",

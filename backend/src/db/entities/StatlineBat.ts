@@ -59,37 +59,37 @@ export class StatlineBat{
     GS: boolean = false;
 
     get H(): number {
-    return this.B1 + this.B2 + this.B3 + this.HR;
+        return this.B1 + this.B2 + this.B3 + this.HR;
     }
 
     get BA(): number {
-    return this.AB > 0 ? this.H / this.AB : 0;
+        return this.AB > 0 ? this.H / this.AB : 0;
     }
 
     get OBP(): number {
-    const denom = this.AB + this.BB + this.HBP + this.SF;
-    return denom > 0 ? (this.H + this.BB + this.HBP) / denom : 0;
+        const denom = this.AB + this.BB + this.HBP + this.SF;
+        return denom > 0 ? (this.H + this.BB + this.HBP) / denom : 0;
     }
 
     get SLG(): number {
-    const totalBases = this.TB;
-    return this.AB > 0 ? totalBases / this.AB : 0;
+        const totalBases = this.TB;
+        return this.AB > 0 ? totalBases / this.AB : 0;
     }
 
     get OPS(): number {
-    return this.OBP + this.SLG;
+        return this.OBP + this.SLG;
     }
 
     get ISO(): number {
-    return this.SLG - this.BA;
+        return this.SLG - this.BA;
     }
 
     get TB(): number {
-    return (1 * this.B1) + (2 * this.B2) + (3 * this.B3) + (4 * this.HR);
+        return (1 * this.B1) + (2 * this.B2) + (3 * this.B3) + (4 * this.HR);
     }
 
     get BABIP(): number {
-    const denom = this.AB - this.K - this.HR + this.SF;
-    return denom > 0 ? (this.H - this.HR) / denom : 0;
+        const denom = this.AB - this.K - this.HR + this.SF;
+        return denom > 0 ? (this.H - this.HR) / denom : 0;
     }
 }

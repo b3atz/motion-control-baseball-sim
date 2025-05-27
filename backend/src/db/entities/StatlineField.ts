@@ -7,6 +7,9 @@ export class StatlineField{
     @PrimaryKey()
     id!: number;
 
+    @Property()
+    pos!: string;
+
     @ManyToOne(() => Player)
     player!: Rel<Player>;
     
