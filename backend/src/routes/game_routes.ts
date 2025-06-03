@@ -94,7 +94,7 @@ export function GameRoutes(app:FastifyInstance){
         return reply.send({ message: "Stats recorded" });
     });
     //Get game batting stats
-    app.get<{ Params: { id: string } }>("/games/:id/batting-stats", async (req, reply) => {
+    app.get<{ Params: { id: string } }>("/games/:id/statBat", async (req, reply) => {
         try {
             const gameId = Number(req.params.id);
 
@@ -149,7 +149,7 @@ export function GameRoutes(app:FastifyInstance){
         }
     });
     //Get game pitching stats
-    app.get<{ Params: { id: string } }>("/games/:id/pitching-stats", async (req, reply) => {
+    app.get<{ Params: { id: string } }>("/games/:id/statPitch", async (req, reply) => {
         try {
             const gameId = Number(req.params.id);
 
@@ -197,7 +197,7 @@ export function GameRoutes(app:FastifyInstance){
         }
     });
     //get game fielding stats
-    app.get<{ Params: { id: string } }>("/games/:id/fielding-stats", async (req, reply) => {
+    app.get<{ Params: { id: string } }>("/games/:id/statField", async (req, reply) => {
         try {
             const gameId = Number(req.params.id);
 

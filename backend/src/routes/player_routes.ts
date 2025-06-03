@@ -52,7 +52,12 @@ export function PlayerRoutes(app:FastifyInstance){
         }
 
         const player = await req.em.findOne(Player, { id }, {
-            populate: ['statlinesBat'],
+            populate: [
+                'statlinesBat',
+                'statlinesBat.game',
+                'statlinesBat.game.home',
+                'statlinesBat.game.away',
+            ],
         });
 
         if (!player) {
@@ -61,7 +66,7 @@ export function PlayerRoutes(app:FastifyInstance){
 
         const statBat = player.statlinesBat.getItems().map(stat => ({
             id: stat.id,
-            playerName: stat.player?.name ?? null,
+            gameName: stat.game.home.name + ' vs ' + stat.game.away.name,
             B1: stat.B1,
             B2: stat.B2,
             B3: stat.B3,
@@ -91,8 +96,7 @@ export function PlayerRoutes(app:FastifyInstance){
         } catch (err: any) {
             return reply.status(500).send({ message: err.message });
         }
-    });
- 
+    }); 
     //Display statPitch
      app.get<{ Params: { id: string } }>("/players/:id/statPitch", async (req, reply) => {
     try {
@@ -103,7 +107,13 @@ export function PlayerRoutes(app:FastifyInstance){
         }
 
         const player = await req.em.findOne(Player, { id }, {
-            populate: ['statlinesPitch'],
+            populate: [
+                'statlinesPitch',
+                'statlinesPitch.game',
+                'statlinesPitch.game.home',
+                'statlinesPitch.game.away',
+            ],
+            
         });
 
         if (!player) {
@@ -111,7 +121,7 @@ export function PlayerRoutes(app:FastifyInstance){
         }
 
         const statPitch = player.statlinesPitch.getItems().map(stat => ({
-            playerName: stat.player?.name ?? null,
+            gameName: stat.game.home.name + ' vs ' + stat.game.away.name,
             IP: stat.IP,
             H: stat.H,
             BB: stat.BB,
@@ -144,7 +154,12 @@ export function PlayerRoutes(app:FastifyInstance){
         }
 
         const player = await req.em.findOne(Player, { id }, {
-            populate: ['statlinesField'],
+            populate: [
+                'statlinesField',
+                'statlinesField.game',
+                'statlinesField.game.home',
+                'statlinesField.game.away',
+            ],
         });
 
         if (!player) {
@@ -153,7 +168,7 @@ export function PlayerRoutes(app:FastifyInstance){
 
         const statBat = player.statlinesField.getItems().map(stat => ({
             id: stat.id,
-            playerName: stat.player?.name ?? null,
+            gameName: stat.game.home.name + ' vs ' + stat.game.away.name,
             pos: stat.pos,
             E: stat.E,
             PO: stat.PO,
