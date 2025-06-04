@@ -59,7 +59,7 @@ export function GameRoutes(app:FastifyInstance){
         const fieldKeys = ['E', 'PO', 'A'];
 
         for (const [_, play] of Object.entries(plays)) {
-            const { player_id, key, stat } = play;
+            const { player_id, key, stat, pos } = play;
 
             if (!player_id || !key) continue;
 
@@ -81,7 +81,7 @@ export function GameRoutes(app:FastifyInstance){
                 } else if (fieldKeys.includes(key) && stat == 'field') {
                     let statline = await req.em.findOne(StatlineField, { player: player_id, game: game_id });
                     if (!statline) {
-                        statline = req.em.create(StatlineField, { player, game, pos:'temp'});
+                        statline = req.em.create(StatlineField, { player, game, pos});
                     }
                     (statline as any)[key] = ((statline as any)[key] || 0) + 1;
                 }

@@ -88,7 +88,7 @@ const BattingStats:React.FC<batProps> = ({id,gameTF}) => {
                 <th>{stat.SF}</th>
                 <th>{stat.R}</th>
                 <th>{stat.RBI}</th>
-                <th>{stat.GS ? '✅' : '⛔'}</th>
+                <th>{'✅'}</th>
                 <th>{stat.H}</th>
                 <th>{stat.BA}</th>
                 <th>{stat.OBP}</th>

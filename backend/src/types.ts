@@ -59,6 +59,7 @@ export type PlayInput = {
   player_id: number;
   key: string,
   stat: string;
+  pos: string;
 };
 
 export type RecordStatsBody = {
