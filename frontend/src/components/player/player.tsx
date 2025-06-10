@@ -1,21 +1,29 @@
 import { Button, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 interface PlayerProps {
-  key: number;
+  id: number;
   image: string;
   name: string;
 }
 
-const Player: React.FC<PlayerProps> = ({key, image, name}) => {
+const Player: React.FC<PlayerProps> = ({ id, image, name}) => {
+  const navigate = useNavigate();
+
+  const goToPlayer = () => {
+    navigate(`${name}`, {
+      state: { id }
+    })
+  }
   return (
     <Card style={{ width: '10rem' }}>
       <Card.Img variant="top" src={image} style={{ width: '48px', height: '51px', objectFit: 'cover', borderRadius: '50%', margin: 'auto', marginTop: '1rem' }} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
-          {key}
+          {id}
         </Card.Text>
-        <Button variant="primary">Profile</Button>
+        <Button onClick={goToPlayer} variant="primary">Profile</Button>
       </Card.Body>
     </Card>
   );

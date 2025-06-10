@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import app from "./app.js";
 import { MikroORM } from "@mikro-orm/core";
 import config from "./mikro-orm.config.js";
-import { PlayerSeeder } from "./db/seeder/PlayerSeeder.js";
+import { DemoSeeder } from "./db/seeder/DemoSeeder.js";
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ async function bootstrap() {
     const playerCount = await orm.em.count('Player');
     if (playerCount === 0) {
       const seeder = orm.getSeeder();
-      await seeder.seed(PlayerSeeder);
+      await seeder.seed(DemoSeeder);
       console.log('Seeded initial player data');
     }
 

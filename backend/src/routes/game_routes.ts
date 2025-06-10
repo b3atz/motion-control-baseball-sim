@@ -32,7 +32,7 @@ export function GameRoutes(app:FastifyInstance){
     //Get all Games
     app.get("/games",async (req, reply) => {
 		try {
-			const gameList = await req.em.find(Game, {});
+			const gameList = await req.em.find(Game, {}, {  populate: ['home','away'],});
 			reply.send(gameList);
 		} catch (err) {
 			reply.status(500).send(err);

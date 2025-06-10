@@ -1,8 +1,6 @@
 
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { Player } from "../db/entities/Player.js";
-import { PlayerSeeder } from "../db/seeder/PlayerSeeder.js";
-import { request } from "http";
 import { newPlayer } from "../types.js";
 
 export function PlayerRoutes(app:FastifyInstance){

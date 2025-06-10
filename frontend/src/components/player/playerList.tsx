@@ -8,7 +8,7 @@ interface PlayerData {
 }
 
 const PlayerList:React.FC = () => {
-    const [players, setPlayers] = useState<PlayerData[]>([]);
+  const [players, setPlayers] = useState<PlayerData[]>([]);
   useEffect(() => {
     fetch(`http://localhost:8080/players`)
       .then((res) => res.json())
@@ -18,7 +18,7 @@ const PlayerList:React.FC = () => {
   return (
     <div className="d-flex flex-wrap gap-3">
         {players.map((player) => (
-            <Player key={player.id} image={player.profilePictureUrl} name={player.name} />
+            <Player id={player.id} image={player.profilePictureUrl} name={player.name} />
         ))}
     </div>
   );
