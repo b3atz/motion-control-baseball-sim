@@ -1,4 +1,7 @@
 # motion-control-baseball-sim
+
+Motion control baseball sim is a project that is trying to create a carrer mode style game mode for the game mario supper sluggers.
+
 ## Project Setup
 
 ### Prerequisites
