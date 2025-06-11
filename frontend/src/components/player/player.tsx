@@ -17,7 +17,7 @@ const Player: React.FC<PlayerProps> = ({ id, image, name}) => {
   }
   return (
     <Card style={{ width: '10rem' }}>
-      <Card.Img variant="top" src={image} style={{ width: '48px', height: '51px', objectFit: 'cover', borderRadius: '50%', margin: 'auto', marginTop: '1rem' }} />
+      <Card.Img alt={name + ' image'} variant="top" src={image} style={{ width: '48px', height: '51px', objectFit: 'cover', borderRadius: '50%', margin: 'auto', marginTop: '1rem' }} />
       <Card.Body>
         <Card.Title>{name}</Card.Title>
         <Card.Text>
